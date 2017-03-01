@@ -16,7 +16,7 @@ namespace Version_1_C
             else
                 MessageBox.Show("Sorry no artist by this name");
         }
-       
+       //this is a test change
         public void NewArtist()
         {
             clsArtist lcArtist = new clsArtist(this);
