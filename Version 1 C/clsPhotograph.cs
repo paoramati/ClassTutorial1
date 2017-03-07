@@ -13,18 +13,18 @@ namespace Version_1_C
         //edit details of photograph
 
         [NonSerialized()]
-        private static frmSculpture sculptureDialog;
+        private static frmPainting paintingDialog;
 
         public override void EditDetails()
         {
-            if (sculptureDialog == null)
+            if (paintingDialog == null)
             {
-                sculptureDialog = new frmSculpture();
+                paintingDialog = new frmPainting();
             }
-            sculptureDialog.SetDetails(_Name, theDate, theValue, _Width, _Height, _Type);
-            if (sculptureDialog.ShowDialog() == DialogResult.OK)
+            paintingDialog.SetDetails(_Name, theDate, theValue, _Width, _Height, _Type);
+            if (paintingDialog.ShowDialog() == DialogResult.OK)
             {
-                sculptureDialog.GetDetails(ref _Name, ref theDate, ref theValue, ref _Width, ref _Height, ref _Type);
+                paintingDialog.GetDetails(ref _Name, ref theDate, ref theValue, ref _Width, ref _Height, ref _Type);
             }
         }
     }

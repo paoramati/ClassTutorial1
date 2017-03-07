@@ -9,6 +9,7 @@ namespace Version_1_C
         private float theWeight;
         private string theMaterial;
 
+        //References clsPainting
         [NonSerialized()]
         private static frmSculpture sculptureDialog;
 
@@ -24,5 +25,6 @@ namespace Version_1_C
                 sculptureDialog.GetDetails(ref _Name, ref theDate, ref theValue, ref theWeight, ref theMaterial);
             }
         }
+        //end reference
     }
 }
