@@ -22,7 +22,7 @@ namespace Version_1_C
          */
 
         //sets details of a sculpture, uses base SetDetails method of frmWorks superclass
-        //NB: LOOK UP 'VIRTUAL' method declarations
+        //CHECK: Look up 'VIRTUAL' method declarations
         public virtual void SetDetails(string prName, DateTime prDate, decimal prValue,
                                        float prWeight, string prMaterial)
         {
