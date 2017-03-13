@@ -44,19 +44,6 @@ namespace Version_1_C
             lblTotal.Text = Convert.ToString(_WorksList.GetTotalValue());
         }
 
-        //public void SetDetails(string prName, string prSpeciality, string prPhone, 
-        //                       clsWorksList prWorksList, clsArtistList prArtistList)
-        //{
-        //    txtName.Text = prName;
-        //    txtSpeciality.Text = prSpeciality;
-        //    txtPhone.Text = prPhone;
-        //    _ArtistList = prArtistList;
-        //    _WorksList = prWorksList;
-        //    //_SortOrder = prSortOrder;
-        //    _SortOrder = _WorksList.SortOrder;      //private var _SortOrder is being set by clsWorksList Property SortOrder
-        //    UpdateDisplay();
-        //}
-
         public void SetDetails(clsArtist prArtist)
         {
             _Artist = prArtist;
@@ -64,17 +51,7 @@ namespace Version_1_C
             UpdateDisplay();
             ShowDialog();
         }
-
-        //public void GetDetails(ref string prName, ref string prSpeciality, ref string prPhone)
-        //{
-        //    prName = txtName.Text;
-        //    prSpeciality = txtSpeciality.Text;
-        //    prPhone = txtPhone.Text;
-        //    //prSortOrder = sortOrder;
-        //    _SortOrder = _WorksList.SortOrder;      //private var _SortOrder is being retrieved from clsWorksList Property SortOrder
-        //}
-
-        //new method from task 8 d. Updated name to fit conventions
+        
         private void UpdateForm()
         {
             txtName.Text = _Artist.Name;
@@ -84,7 +61,6 @@ namespace Version_1_C
             _WorksList = _Artist.WorksList;
         }
 
-        //new method from task 8 d. Updated name to fit conventions
         private void PushData()
         {
             _Artist.Name = txtName.Text;

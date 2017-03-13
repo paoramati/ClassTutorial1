@@ -94,13 +94,6 @@ namespace Version_1_C
             //}
         }
 
-        /* 
-         * CHECK:What does Otto mean by member variables? Should that include the artistDialog 
-         * and thus paintingDialog, etc. declarations into _paintingDialog, etc.?
-         */
-
-        //moved _SortOrder to clsWorksList
-
         public clsArtist(clsArtistList prArtistList)
         {
             _WorksList = new clsWorksList();
@@ -113,30 +106,8 @@ namespace Version_1_C
             _ArtistDialog.SetDetails(this);
             if (_ArtistDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                
                 _TotalValue = WorksList.GetTotalValue();
             }
         }
-
-        //public void EditDetails()
-        //{
-        //    _ArtistDialog.SetDetails(Name, Speciality, Phone, WorksList, ArtistList);
-        //    if (_ArtistDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-        //    {
-        //        _ArtistDialog.GetDetails(ref Name, ref Speciality, ref Phone);
-        //        TotalValue = WorksList.GetTotalValue();
-        //    }
-        //}
-
-        //Methods refactored by using Property calls instead
-        //public string GetKey()
-        //{
-        //    return Name;
-        //}
-
-        //public decimal GetWorksValue()
-        //{
-        //    return TotalValue;
-        //}
     }
 }
