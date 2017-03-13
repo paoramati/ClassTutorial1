@@ -15,7 +15,7 @@ namespace Version_1_C
         [NonSerialized()]
         private static frmPainting _PaintingDialog;
 
-        public override void editDetails()
+        public override void EditDetails()
         {
             if (_PaintingDialog == null)
             {

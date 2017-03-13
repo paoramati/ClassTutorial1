@@ -13,7 +13,7 @@ namespace Version_1_C
         [NonSerialized()]
         private static frmSculpture _SculptureDialog;
 
-        public override void editDetails()
+        public override void EditDetails()
         {
             if (_SculptureDialog == null)
             {

@@ -11,10 +11,10 @@ namespace Version_1_C
 
         public clsWork()
         {
-            editDetails();
+            EditDetails();
         }
 
-        public abstract void editDetails();
+        public abstract void EditDetails();
 
         public static clsWork NewWork()
         {

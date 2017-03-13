@@ -49,7 +49,7 @@ namespace Version_1_C
             if (prIndex >= 0 && prIndex < this.Count)
             {
                 clsWork lcWork = (clsWork)this[prIndex];
-                lcWork.editDetails();
+                lcWork.EditDetails();
             }
             else
             {
