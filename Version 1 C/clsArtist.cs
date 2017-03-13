@@ -103,8 +103,8 @@ namespace Version_1_C
 
         public clsArtist(clsArtistList prArtistList)
         {
-            WorksList = new clsWorksList();
-            ArtistList = prArtistList;
+            _WorksList = new clsWorksList();
+            _ArtistList = prArtistList;
             EditDetails();
         }
 

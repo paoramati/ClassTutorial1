@@ -15,7 +15,7 @@ namespace Version_1_C
             InitializeComponent();
         }
 
-        private clsArtistList _ArtistList;
+        private clsArtistList _ArtistList;      // = new clsArtistList();
         private clsWorksList _WorksList;
         private byte _SortOrder; // 0 = Name, 1 = Date      CHECK: retain this var still? see below check comment
 
@@ -80,6 +80,8 @@ namespace Version_1_C
             txtName.Text = _Artist.Name;
             txtPhone.Text = _Artist.Phone;
             txtSpeciality.Text = _Artist.Speciality;
+            _ArtistList = _Artist.ArtistList;
+            _WorksList = _Artist.WorksList;
         }
 
         //new method from task 8 d. Updated name to fit conventions
