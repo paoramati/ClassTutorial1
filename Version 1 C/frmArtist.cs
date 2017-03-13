@@ -15,58 +15,64 @@ namespace Version_1_C
             InitializeComponent();
         }
 
-        private clsArtistList theArtistList;
-        private clsWorksList theWorksList;
-        private byte sortOrder; // 0 = Name, 1 = Date
+        private clsArtistList _ArtistList;
+        private clsWorksList _WorksList;
+        private byte _SortOrder; // 0 = Name, 1 = Date
 
         private void UpdateDisplay()
         {
             txtName.Enabled = txtName.Text == "";
-            if (sortOrder == 0)
+            //previously if (sortOrder == 0)
+            //CHECK: using _WorksList.SortOrder in place?
+            //UPDATE: this did not work
+            //UPDATE2: giving frmArtist it's own _SortOrder field has worked. Not sure where the clsWorkList.SortOrder property is being used now...
+            if (_SortOrder == 0)
             {
-                theWorksList.SortByName();
+                _WorksList.SortByName();
                 rbByName.Checked = true;
             }
             else
             {
-                theWorksList.SortByDate();
+                _WorksList.SortByDate();
                 rbByDate.Checked = true;
             }
 
             lstWorks.DataSource = null;
-            lstWorks.DataSource = theWorksList;
-            lblTotal.Text = Convert.ToString(theWorksList.GetTotalValue());
+            lstWorks.DataSource = _WorksList;
+            lblTotal.Text = Convert.ToString(_WorksList.GetTotalValue());
         }
 
-        public void SetDetails(string prName, string prSpeciality, string prPhone, byte prSortOrder,
+        public void SetDetails(string prName, string prSpeciality, string prPhone, 
                                clsWorksList prWorksList, clsArtistList prArtistList)
         {
             txtName.Text = prName;
             txtSpeciality.Text = prSpeciality;
             txtPhone.Text = prPhone;
-            theArtistList = prArtistList;
-            theWorksList = prWorksList;
-            sortOrder = prSortOrder;
+            _ArtistList = prArtistList;
+            _WorksList = prWorksList;
+            //_SortOrder = prSortOrder;
+            _SortOrder = _WorksList.SortOrder;      //private var _SortOrder is being set by clsWorksList Property SortOrder
             UpdateDisplay();
         }
 
-        public void GetDetails(ref string prName, ref string prSpeciality, ref string prPhone, ref byte prSortOrder)
+        public void GetDetails(ref string prName, ref string prSpeciality, ref string prPhone)
         {
             prName = txtName.Text;
             prSpeciality = txtSpeciality.Text;
             prPhone = txtPhone.Text;
-            prSortOrder = sortOrder;
+            //prSortOrder = sortOrder;
+            _SortOrder = _WorksList.SortOrder;      //private var _SortOrder is being retrieved from clsWorksList Property SortOrder
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            theWorksList.DeleteWork(lstWorks.SelectedIndex);
+            _WorksList.DeleteWork(lstWorks.SelectedIndex);
             UpdateDisplay();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            theWorksList.AddWork();
+            _WorksList.AddWork();
             UpdateDisplay();
         }
 
@@ -81,7 +87,7 @@ namespace Version_1_C
         public virtual Boolean isValid()
         {
             if (txtName.Enabled && txtName.Text != "")
-                if (theArtistList.Contains(txtName.Text))
+                if (_ArtistList.Contains(txtName.Text))
                 {
                     MessageBox.Show("Artist with that name already exists!");
                     return false;
@@ -97,14 +103,14 @@ namespace Version_1_C
             int lcIndex = lstWorks.SelectedIndex;
             if (lcIndex >= 0)
             {
-                theWorksList.EditWork(lcIndex);
+                _WorksList.EditWork(lcIndex);
                 UpdateDisplay();
             }
         }
 
         private void rbByDate_CheckedChanged(object sender, EventArgs e)
         {
-            sortOrder = Convert.ToByte(rbByDate.Checked);
+            _SortOrder = Convert.ToByte(rbByDate.Checked);
             UpdateDisplay();
         }
 

@@ -12,18 +12,18 @@ namespace Version_1_C
         private string _Type;
 
         [NonSerialized()]
-        private static frmPainting paintDialog;
+        private static frmPainting _PaintDialog;
 
-        public override void EditDetails()
+        public override void editDetails()
         {
-            if (paintDialog == null)
+            if (_PaintDialog == null)
             {
-                paintDialog = new frmPainting();
+                _PaintDialog = new frmPainting();
             }
-            paintDialog.SetDetails(_Name, theDate, theValue, _Width, _Height, _Type);
-            if(paintDialog.ShowDialog() == DialogResult.OK)
+            _PaintDialog.SetDetails(_Name, _Date, _Value, _Width, _Height, _Type);
+            if(_PaintDialog.ShowDialog() == DialogResult.OK)
             {
-               paintDialog.GetDetails(ref _Name, ref theDate, ref theValue, ref _Width, ref _Height, ref _Type);
+               _PaintDialog.GetDetails(ref _Name, ref _Date, ref _Value, ref _Width, ref _Height, ref _Type);
             }
         }
     }

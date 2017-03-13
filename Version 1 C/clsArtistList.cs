@@ -13,11 +13,11 @@ namespace Version_1_C
             clsArtist lcArtist;
             lcArtist = (clsArtist)this[prKey];
             if (lcArtist != null)
-                lcArtist.EditDetails();
+                lcArtist.editDetails();
             else
                 MessageBox.Show("Sorry no artist by this name");
         }
-        //this is a test change
+        
         public void NewArtist()
         {
             clsArtist lcArtist = new clsArtist(this);

@@ -10,7 +10,6 @@ namespace Version_1_C
 {
     public partial class frmWork : Form
     {
-
         public frmWork()
         {
             InitializeComponent();

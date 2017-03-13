@@ -5,11 +5,11 @@ namespace Version_1_C
     [Serializable()] 
     public class clsArtist
     {
-        private string name;
-        private string speciality;
-        private string phone;
+        private string _Name;
+        private string _Speciality;
+        private string _Phone;
         
-        private decimal theTotalValue;
+        private decimal _TotalValue;
         /* 
          * CHECK:What does Otto mean by member variables? Should that include the artistDialog 
          * and thus paintingDialog, etc. declarations into _paintingDialog, etc.?
@@ -18,37 +18,38 @@ namespace Version_1_C
          * kept to how they were, and not updated like the description.
          * Is that what Matthius wanted in the end?
          */
-        private clsWorksList theWorksList;
-        private clsArtistList theArtistList;
+        private clsWorksList _WorksList;
+        private clsArtistList _ArtistList;
         
-        private static frmArtist artistDialog = new frmArtist();
-        private byte sortOrder;
+        private static frmArtist _ArtistDialog = new frmArtist();
+
+        //moved _SortOrder to clsWorksList
 
         public clsArtist(clsArtistList prArtistList)
         {
-            theWorksList = new clsWorksList();
-            theArtistList = prArtistList;
-            EditDetails();
+            _WorksList = new clsWorksList();
+            _ArtistList = prArtistList;
+            editDetails();
         }
         
-        public void EditDetails()
+        public void editDetails()
         {
-            artistDialog.SetDetails(name, speciality, phone, sortOrder, theWorksList, theArtistList);
-            if (artistDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            _ArtistDialog.SetDetails(_Name, _Speciality, _Phone, _WorksList, _ArtistList);
+            if (_ArtistDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                artistDialog.GetDetails(ref name, ref speciality, ref phone, ref sortOrder);
-                theTotalValue = theWorksList.GetTotalValue();
+                _ArtistDialog.GetDetails(ref _Name, ref _Speciality, ref _Phone);
+                _TotalValue = _WorksList.GetTotalValue();
             }
         }
 
         public string GetKey()
         {
-            return name;
+            return _Name;
         }
 
         public decimal GetWorksValue()
         {
-            return theTotalValue;
+            return _TotalValue;
         }
     }
 }
