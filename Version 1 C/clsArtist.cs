@@ -110,13 +110,23 @@ namespace Version_1_C
 
         public void EditDetails()
         {
-            _ArtistDialog.SetDetails(Name, Speciality, Phone, WorksList, ArtistList);
+            _ArtistDialog.SetDetails(this);
             if (_ArtistDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                _ArtistDialog.GetDetails(ref Name, ref Speciality, ref Phone);
-                TotalValue = WorksList.GetTotalValue();
+                
+                _TotalValue = WorksList.GetTotalValue();
             }
         }
+
+        //public void EditDetails()
+        //{
+        //    _ArtistDialog.SetDetails(Name, Speciality, Phone, WorksList, ArtistList);
+        //    if (_ArtistDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        //    {
+        //        _ArtistDialog.GetDetails(ref Name, ref Speciality, ref Phone);
+        //        TotalValue = WorksList.GetTotalValue();
+        //    }
+        //}
 
         //Methods refactored by using Property calls instead
         //public string GetKey()

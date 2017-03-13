@@ -17,7 +17,9 @@ namespace Version_1_C
 
         private clsArtistList _ArtistList;
         private clsWorksList _WorksList;
-        private byte _SortOrder; // 0 = Name, 1 = Date
+        private byte _SortOrder; // 0 = Name, 1 = Date      CHECK: retain this var still? see below check comment
+
+        private clsArtist _Artist;
 
         private void UpdateDisplay()
         {
@@ -42,26 +44,50 @@ namespace Version_1_C
             lblTotal.Text = Convert.ToString(_WorksList.GetTotalValue());
         }
 
-        public void SetDetails(string prName, string prSpeciality, string prPhone, 
-                               clsWorksList prWorksList, clsArtistList prArtistList)
+        //public void SetDetails(string prName, string prSpeciality, string prPhone, 
+        //                       clsWorksList prWorksList, clsArtistList prArtistList)
+        //{
+        //    txtName.Text = prName;
+        //    txtSpeciality.Text = prSpeciality;
+        //    txtPhone.Text = prPhone;
+        //    _ArtistList = prArtistList;
+        //    _WorksList = prWorksList;
+        //    //_SortOrder = prSortOrder;
+        //    _SortOrder = _WorksList.SortOrder;      //private var _SortOrder is being set by clsWorksList Property SortOrder
+        //    UpdateDisplay();
+        //}
+
+        public void SetDetails(clsArtist prArtist)
         {
-            txtName.Text = prName;
-            txtSpeciality.Text = prSpeciality;
-            txtPhone.Text = prPhone;
-            _ArtistList = prArtistList;
-            _WorksList = prWorksList;
-            //_SortOrder = prSortOrder;
-            _SortOrder = _WorksList.SortOrder;      //private var _SortOrder is being set by clsWorksList Property SortOrder
+            _Artist = prArtist;
+            UpdateForm();
             UpdateDisplay();
+            ShowDialog();
         }
 
-        public void GetDetails(ref string prName, ref string prSpeciality, ref string prPhone)
+        //public void GetDetails(ref string prName, ref string prSpeciality, ref string prPhone)
+        //{
+        //    prName = txtName.Text;
+        //    prSpeciality = txtSpeciality.Text;
+        //    prPhone = txtPhone.Text;
+        //    //prSortOrder = sortOrder;
+        //    _SortOrder = _WorksList.SortOrder;      //private var _SortOrder is being retrieved from clsWorksList Property SortOrder
+        //}
+
+        //new method from task 8 d. Updated name to fit conventions
+        private void UpdateForm()
         {
-            prName = txtName.Text;
-            prSpeciality = txtSpeciality.Text;
-            prPhone = txtPhone.Text;
-            //prSortOrder = sortOrder;
-            _SortOrder = _WorksList.SortOrder;      //private var _SortOrder is being retrieved from clsWorksList Property SortOrder
+            txtName.Text = _Artist.Name;
+            txtPhone.Text = _Artist.Phone;
+            txtSpeciality.Text = _Artist.Speciality;
+        }
+
+        //new method from task 8 d. Updated name to fit conventions
+        private void PushData()
+        {
+            _Artist.Name = txtName.Text;
+            _Artist.Phone = txtPhone.Text;
+            _Artist.Speciality = txtSpeciality.Text;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -80,6 +106,7 @@ namespace Version_1_C
         {
             if (isValid())
             {
+                PushData();
                 DialogResult = DialogResult.OK;
             }
         }
