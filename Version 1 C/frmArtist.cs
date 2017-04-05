@@ -15,21 +15,13 @@ namespace Version_1_C
             InitializeComponent();
         }
 
-        private clsArtistList _ArtistList;      // = new clsArtistList();
         private clsWorksList _WorksList;
-        private byte _SortOrder; // 0 = Name, 1 = Date      CHECK: retain this var still? see below check comment
-
         private clsArtist _Artist;
 
-        //NB: formally known as ... UpdateDisplay
-        private void UpdateArtWorksList()
+        private void UpdateDisplay()
         {
             txtName.Enabled = txtName.Text == "";
-            //previously if (sortOrder == 0)
-            //CHECK: using _WorksList.SortOrder in place?
-            //UPDATE: this did not work
-            //UPDATE2: giving frmArtist it's own _SortOrder field has worked. Not sure where the clsWorkList.SortOrder property is being used now...
-            if (_SortOrder == 0)
+            if (_WorksList.SortOrder == 0)
             {
                 _WorksList.SortByName();
                 rbByName.Checked = true;
@@ -48,18 +40,16 @@ namespace Version_1_C
         public void SetDetails(clsArtist prArtist)
         {
             _Artist = prArtist;
-            UpdateArtistDetails();
-            UpdateArtWorksList();
+            UpdateForm();
+            UpdateDisplay();
             ShowDialog();
         }
         
-        //formally known as UpdateForm() 
-        private void UpdateArtistDetails()
+        private void UpdateForm()
         {
             txtName.Text = _Artist.Name;
             txtPhone.Text = _Artist.Phone;
             txtSpeciality.Text = _Artist.Speciality;
-            _ArtistList = _Artist.ArtistList;
             _WorksList = _Artist.WorksList;
         }
 
@@ -73,13 +63,13 @@ namespace Version_1_C
         private void btnDelete_Click(object sender, EventArgs e)
         {
             _WorksList.DeleteWork(lstWorks.SelectedIndex);
-            UpdateArtWorksList();
-        }
+            UpdateDisplay();
+        }   
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             _WorksList.AddWork();
-            UpdateArtWorksList();
+            UpdateDisplay();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -94,7 +84,7 @@ namespace Version_1_C
         public virtual Boolean isValid()
         {
             if (txtName.Enabled && txtName.Text != "")
-                if (_ArtistList.Contains(txtName.Text))
+                if (_Artist.IsDuplicate(txtName.Text))
                 {
                     MessageBox.Show("Artist with that name already exists!");
                     return false;
@@ -111,14 +101,14 @@ namespace Version_1_C
             if (lcIndex >= 0)
             {
                 _WorksList.EditWork(lcIndex);
-                UpdateArtWorksList();
+                UpdateDisplay();
             }
         }
 
         private void rbByDate_CheckedChanged(object sender, EventArgs e)
         {
-            _SortOrder = Convert.ToByte(rbByDate.Checked);
-            UpdateArtWorksList();
+            _WorksList.SortOrder = Convert.ToByte(rbByDate.Checked);
+            UpdateDisplay();
         }
 
     }

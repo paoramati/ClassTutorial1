@@ -62,19 +62,21 @@ namespace Version_1_C
             decimal lcTotal = 0;
             foreach (clsWork lcWork in this)
             {
-                lcTotal += lcWork.GetValue();
+                lcTotal += lcWork.Value;
             }
             return lcTotal;
         }
 
          public void SortByName()
          {
-             Sort(_NameComparer);
-         }
+            Sort(_NameComparer);
+            _SortOrder = 1;
+        }
     
         public void SortByDate()
         {
             Sort(_DateComparer);
+            _SortOrder = 0;
         }
     }
 }

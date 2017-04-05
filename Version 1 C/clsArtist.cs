@@ -87,11 +87,6 @@ namespace Version_1_C
             {
                 return _ArtistList;
             }
-
-            //set
-            //{
-            //    _ArtistList = value;
-            //}
         }
 
         public clsArtist(clsArtistList prArtistList)
@@ -104,10 +99,12 @@ namespace Version_1_C
         public void EditDetails()
         {
             _ArtistDialog.SetDetails(this);
-         //   if (_ArtistDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-           // {
-                _TotalValue = WorksList.GetTotalValue();
-            //}
+            _TotalValue = WorksList.GetTotalValue();
+        }
+
+        public bool IsDuplicate(string prArtistName)
+        {
+            return _ArtistList.ContainsKey(prArtistName);
         }
     }
 }
