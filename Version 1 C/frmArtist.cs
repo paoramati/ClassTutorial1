@@ -21,7 +21,8 @@ namespace Version_1_C
 
         private clsArtist _Artist;
 
-        private void UpdateDisplay()
+        //NB: formally known as ... UpdateDisplay
+        private void UpdateArtWorksList()
         {
             txtName.Enabled = txtName.Text == "";
             //previously if (sortOrder == 0)
@@ -47,12 +48,13 @@ namespace Version_1_C
         public void SetDetails(clsArtist prArtist)
         {
             _Artist = prArtist;
-            UpdateForm();
-            UpdateDisplay();
+            UpdateArtistDetails();
+            UpdateArtWorksList();
             ShowDialog();
         }
         
-        private void UpdateForm()
+        //formally known as UpdateForm() 
+        private void UpdateArtistDetails()
         {
             txtName.Text = _Artist.Name;
             txtPhone.Text = _Artist.Phone;
@@ -71,13 +73,13 @@ namespace Version_1_C
         private void btnDelete_Click(object sender, EventArgs e)
         {
             _WorksList.DeleteWork(lstWorks.SelectedIndex);
-            UpdateDisplay();
+            UpdateArtWorksList();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             _WorksList.AddWork();
-            UpdateDisplay();
+            UpdateArtWorksList();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -109,14 +111,14 @@ namespace Version_1_C
             if (lcIndex >= 0)
             {
                 _WorksList.EditWork(lcIndex);
-                UpdateDisplay();
+                UpdateArtWorksList();
             }
         }
 
         private void rbByDate_CheckedChanged(object sender, EventArgs e)
         {
             _SortOrder = Convert.ToByte(rbByDate.Checked);
-            UpdateDisplay();
+            UpdateArtWorksList();
         }
 
     }

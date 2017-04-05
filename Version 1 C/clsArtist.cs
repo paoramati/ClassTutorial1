@@ -104,10 +104,10 @@ namespace Version_1_C
         public void EditDetails()
         {
             _ArtistDialog.SetDetails(this);
-            if (_ArtistDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
+         //   if (_ArtistDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+           // {
                 _TotalValue = WorksList.GetTotalValue();
-            }
+            //}
         }
     }
 }
